@@ -1,7 +1,6 @@
 public class Immigrant {
     private boolean complete;
     private boolean validAN;
-
     public Immigrant() {
     }
 
