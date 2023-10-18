@@ -1,3 +1,48 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.util.*;
+
+/**
+ * Junit tests for the methods in the Immigration and Workflow classes
+ */
 public class JUnitTest {
+	//Workflow class
+
+	/**
+	 * Testing to make sure the proper email is sent out depending
+	 * on whether the application was approved or not.
+	 */
+	@Test 
+	public void checkEmail(){
+		Immigrant immigrant = new Immigrant();
+		
+		//tests the case in which the form is not complete/approved
+		assertEquals("Unfortunately, we cannot allow your request to go through.", immigrant.generateEmail());
+		//sets the complete field to true
+		immigrant.setComplete(true);
+		//tests the case in which the form is completed/approved
+		assertEquals("Congratulations, your application is valid and your request has been sent through.", immigrant.generateEmail());
+	}
+
+	//Immigrant class
+
+	/**
+	 * Testing to make sure the relative is checked properly to
+	 * ensure they have not already been granted access under a
+	 * different immigrant.
+	 */
+	@Test
+	public void checkRelative(){
+		Immigrant immigrant = new Immigrant();
+		//setting the relative name to someone that has not been granted access
+		immigrant.setRelativeName("Christopher Jackson");
+		if(immigrant.relativeAccessGranted())
+			fail();
+		//setting the relative name to someone that has been granted access
+		mmigrant.setRelativeName("Jackson Christopher");
+		if(!immigrant.relativeAccessGranted())
+			fail();
+	}
+
 
 }
