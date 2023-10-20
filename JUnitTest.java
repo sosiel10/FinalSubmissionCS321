@@ -16,13 +16,13 @@ public class JUnitTest {
 	public void checkEmail(){
 		Immigrant immigrant = new Immigrant();
 		Workflow wf = new Workflow(immigrant);
-		
+
 		//tests the case in which the form is not complete/approved
-		assertEquals("Unfortunately, we cannot allow your request to go through.", wf.generateEmail());
+		assertEquals("Unfortunately, we cannot allow your request to go through.", False,  wf.generateEmail());
 		//sets the immigrant's/form's complete field to true
 		immigrant.setComplete(true);
 		//tests the case in which the form is completed/approved
-		assertEquals("Congratulations, your application is valid and your request has been sent through.", wf.generateEmail());
+		assertEquals("Congratulations, your application is valid and your request has been sent through.", True, wf.generateEmail());
 	}
 
 	/**
