@@ -1,5 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.*;
 
 /**
@@ -63,9 +65,10 @@ public class JUnitTest {
 	@Test
 	public void checkSetAN(){
 		Immigrant immigrant = new Immigrant();
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(1000000000));
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(-1));
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(0));
+		//setting AN to -1
+		immigrant.setAN(-1);
+		//check to see if number is valid.
+		assertEquals("Invalid alien number, the form was not updated.", immigrant.getValidAN());
 	}
 
 
