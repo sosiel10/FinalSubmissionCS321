@@ -18,11 +18,11 @@ public class JUnitTest {
 		Workflow wf = new Workflow(immigrant);
 
 		//tests the case in which the form is not complete/approved
-		assertEquals("Unfortunately, we cannot allow your request to go through.", False,  wf.generateEmail());
+		assertEquals("Unfortunately, we cannot allow your request to go through.", false,  wf.generateEmail());
 		//sets the immigrant's/form's complete field to true
 		immigrant.setComplete(true);
 		//tests the case in which the form is completed/approved
-		assertEquals("Congratulations, your application is valid and your request has been sent through.", True, wf.generateEmail());
+		assertEquals("Congratulations, your application is valid and your request has been sent through.", true, wf.generateEmail());
 	}
 
 	/**
@@ -51,10 +51,10 @@ public class JUnitTest {
 		Immigrant immigrant = new Immigrant();
 		//setting the relative name to someone that has not been granted access
 		immigrant.setRelativeName("Christopher Jackson");
-		asserEquals(false, immigrant.relativeAccessGranted());
+		assertEquals(false, immigrant.relativeAccessGranted());
 		//setting the relative name to someone that has been granted access
 		immigrant.setRelativeName("Jackson Christopher");
-		asserEquals(true, immigrant.relativeAccessGranted());
+		assertEquals(true, immigrant.relativeAccessGranted());
 	}
 
 	/**
