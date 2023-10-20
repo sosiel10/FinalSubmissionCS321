@@ -22,7 +22,7 @@ public class Workflow {
 	public void setForm(Immigrant form) {
 		this.form = form;
 	}
-
+// Generates a email to the immigrant 
 	public boolean generateEmail() {
 		//use isComplete() on form
 		return false;
