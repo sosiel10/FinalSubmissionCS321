@@ -19,7 +19,7 @@ public class Immigrant {
 
     }
 
-    public boolean isComplete() {
+    public boolean getComplete() {
         return complete;
     }
 
@@ -27,7 +27,7 @@ public class Immigrant {
         this.complete = complete;
     }
 
-    public boolean isValidAN() {
+    public boolean getValidAN() {
         return validAN;
     }
 
