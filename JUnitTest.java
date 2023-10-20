@@ -65,9 +65,9 @@ public class JUnitTest {
 	@Test
 	public void checkSetAN(){
 		Immigrant immigrant = new Immigrant();
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.set(1000000000));
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.set(-1));
-		assertEquals("Invalid alien number, the form was not updated.", immigrant.set(0));
+		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(1000000000));
+		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(-1));
+		assertEquals("Invalid alien number, the form was not updated.", immigrant.setAN(0));
 	}
 
 
