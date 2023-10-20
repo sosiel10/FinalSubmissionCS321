@@ -64,6 +64,7 @@ public class Immigrant {
 
     //checks if the relative has been granted access under a different immigrant
     public boolean relativeAccessGranted(){
-
+        //placeholder
+        return true;
     }
 }
