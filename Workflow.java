@@ -2,6 +2,8 @@ public class Workflow {
     private String nextStep;
     private Immigrant form;
 
+    public Workflow(){}
+
     public Workflow(Immigrant form) {
 
     }
