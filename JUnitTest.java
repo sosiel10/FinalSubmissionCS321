@@ -54,7 +54,7 @@ public class JUnitTest {
 		if(immigrant.relativeAccessGranted())
 			fail();
 		//setting the relative name to someone that has been granted access
-		mmigrant.setRelativeName("Jackson Christopher");
+		immigrant.setRelativeName("Jackson Christopher");
 		if(!immigrant.relativeAccessGranted())
 			fail();
 	}
