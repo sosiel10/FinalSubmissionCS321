@@ -34,12 +34,15 @@ public class JUnitTest {
 	@Test
 	public void nextStepInput(){
 		Workflow wf = new Workflow();
-
-		//setting the next step to a random string should be handled with this message.
-		assertEquals("The next step is not a valid workflow step, this operation was not successful.", wf.setNextStep("Hello World"));
+		
+		wf.setNextStep(1);
+		//Checking if Data Entry step works
+		assertEquals(1, wf.getNextStep());
+		//Checking if Review step works
+		assertEquals(2, wf.getNextStep());
+		//Checking if Approval step works
+		assertEquals(3, wf.getNextStep());
 	}
-
-
 
 	//Immigrant class
 

@@ -1,36 +1,34 @@
 public class Workflow {
-    private String nextStep;
-    private Immigrant form;
+	private int nextStep;
+	private Immigrant form;
 
-    public Workflow(){}
+	public Workflow(){}
 
-    public Workflow(Immigrant form) {
+	public Workflow(Immigrant form) {
 
-    }
-    public String getNextStep() {
-        return nextStep;
-    }
+	}
+	public int getNextStep() {
+		return nextStep;
+	}
+// Data Entry is 1, Review is 2, Approval is 3
+	public void setNextStep(int step) {
+		nextStep = step;
+	}
 
-    public String setNextStep(String nextStep) {
-        //if input is not a valid step, return an error message
-        this.nextStep = nextStep;
-        return this.nextStep;
-    }
+	public Immigrant getForm() {
+		return form;
+	}
 
-    public Immigrant getForm() {
-        return form;
-    }
+	public void setForm(Immigrant form) {
+		this.form = form;
+	}
 
-    public void setForm(Immigrant form) {
-        this.form = form;
-    }
+	public boolean generateEmail() {
+		//use isComplete() on form
+		return false;
+	}
 
-    public boolean generateEmail() {
-        //use isComplete() on form
-        return false;
-    }
+	public void callNext() {
 
-    public void callNext() {
-        
-    }
+	}
 }
