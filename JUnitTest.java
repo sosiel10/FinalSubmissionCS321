@@ -51,12 +51,10 @@ public class JUnitTest {
 		Immigrant immigrant = new Immigrant();
 		//setting the relative name to someone that has not been granted access
 		immigrant.setRelativeName("Christopher Jackson");
-		if(immigrant.relativeAccessGranted())
-			fail();
+		asserEquals(false, immigrant.relativeAccessGranted());
 		//setting the relative name to someone that has been granted access
 		immigrant.setRelativeName("Jackson Christopher");
-		if(!immigrant.relativeAccessGranted())
-			fail();
+		asserEquals(true, immigrant.relativeAccessGranted());
 	}
 
 	/**
