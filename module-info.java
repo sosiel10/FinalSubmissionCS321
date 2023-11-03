@@ -1,4 +1,4 @@
-module CS321GROUPPROJECT {
+module CS321GroupProject {
 	requires javafx.controls;
 //	requires junit;
 	
