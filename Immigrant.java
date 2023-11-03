@@ -10,7 +10,6 @@ public class Immigrant {
     public Immigrant() {
 
     }
-
     /**
      * Constructor that takes in name, alien number and relative name 
      * //can include other parameters we might want in Data Entry
