@@ -16,7 +16,9 @@ public class Immigrant {
      * //can include other parameters we might want in Data Entry
      */
     public Immigrant(String name, int aNumber, String relativeName){
-
+        this.name = name;
+    	this.aNumber = aNumber;
+    	this.relativeName = relativeName;
     }
 
     public boolean getComplete() {
@@ -37,7 +39,7 @@ public class Immigrant {
 
     public String getName() {
        
-        return "";
+        return this.name;
     }
 
     public void setName(String name) {
@@ -46,7 +48,7 @@ public class Immigrant {
 
     public int getAN() {
        
-        return 0;
+        return this.aNumber;
     }
 
     public void setAN(int aNumber) {
@@ -55,7 +57,7 @@ public class Immigrant {
 
     public String getRelativeName() {
         
-        return "";
+        return this.relativeName;
     }
 
     public void setRelativeName(String relativeName) {
