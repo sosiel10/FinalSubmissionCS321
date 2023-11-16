@@ -16,8 +16,10 @@ public class Immigrant {
      */
     public Immigrant(String name, int aNumber, String relativeName){
         this.name = name;
-    	this.aNumber = aNumber;
-    	this.relativeName = relativeName;
+        this.aNumber = aNumber;
+        this.relativeName = relativeName;
+        this.complete = false;
+        this.validAN = false;
     }
 
     public boolean getComplete() {

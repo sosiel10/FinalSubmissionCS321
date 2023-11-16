@@ -57,9 +57,28 @@ class ReviewScreen{
    /**
     * Updates the workflow to indicate the next step.
     */
-   public void toWorflow(){
+   public void toWorkflow(){
       //sets the next step for approval
+      this.nextStep = 1;
       this.workflow.setNextStep(1);
+   }
+
+   /**
+    * Gets the immigrant form.
+    * 
+    * @return the form.
+    */
+   public Immigrant getForm() {
+      return form;
+   }
+
+   /**
+    * Gets the next step of the workflow.
+    * 
+    * @return the next step.
+    */
+   public int getNextStep() {
+      return workflow.getNextStep();
    }
 
    /**
@@ -74,19 +93,41 @@ class ReviewScreen{
 
 
    public static void main(String args[]){
+      //Immigrant form
+      Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
+      immigrant.setValidAN(true);
+      //new workflow
+      Workflow workflow = new Workflow(immigrant);
+      workflow.setNextStep(0);
+      //Review Screen
+      ReviewScreen review = new ReviewScreen(workflow);
+      String name = review.getForm().getName();
+      int alienNumber = review.getForm().getAN();
+      String relativeName = review.getForm().getRelativeName();
+      String workflowStep = "";
+      int nextStep = review.getNextStep();
+      if(nextStep == 0)
+         workflowStep = "Review";
+      else if(nextStep == 1)
+         workflowStep = "Approval";
+
       JFrame frame = new JFrame("Review");
       
       //Creating all text and labels
       JLabel title = new JLabel();
-      JLabel name = new JLabel();
-      JLabel alienNumber = new JLabel();
-      JLabel relativeName = new JLabel();
-      JTextField nameText = new JTextField("John Doe");
-      JTextField alienNumberText = new JTextField("6598737");
-      JTextField relativeNameText = new JTextField("Doe John");
+      JLabel nameLabel = new JLabel();
+      JLabel alienNumberLabel = new JLabel();
+      JLabel relativeNameLabel = new JLabel();
+      JLabel workflowLabel = new JLabel();
+      workflowLabel.setVisible(false);
+      JTextField nameText = new JTextField(name);
+      JTextField alienNumberText = new JTextField(Integer.toString(alienNumber));
+      JTextField relativeNameText = new JTextField(relativeName);
+      JTextField workflowText = new JTextField(workflowStep);
+      workflowText.setVisible(false);
       
       //creates the panel
-      JPanel panel = new JPanel(new GridLayout(5, 2));
+      JPanel panel = new JPanel(new GridLayout(6, 2));
 
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setSize(600,600);
@@ -98,18 +139,21 @@ class ReviewScreen{
       
       //sets texts for the labels
       title.setText("Review Screen");
-      name.setText("Name: ");
-      alienNumber.setText("Alien Number: ");
-      relativeName.setText("Relative Name: ");
+      nameLabel.setText("Name: ");
+      alienNumberLabel.setText("Alien Number: ");
+      relativeNameLabel.setText("Relative Name: ");
+      workflowLabel.setText("Workflow Step: ");
 
       //adding everything to the panel
       panel.add(title);
       panel.add(workflowButton);
-      panel.add(name);
+      panel.add(workflowLabel);
+      panel.add(workflowText);
+      panel.add(nameLabel);
       panel.add(nameText);
-      panel.add(alienNumber);
+      panel.add(alienNumberLabel);
       panel.add(alienNumberText);
-      panel.add(relativeName);
+      panel.add(relativeNameLabel);
       panel.add(relativeNameText);
       panel.add(editButton);
       panel.add(approveButton);
@@ -118,17 +162,20 @@ class ReviewScreen{
 
       //formats it so all the text is central
       title.setHorizontalAlignment(JLabel.CENTER);
-      name.setHorizontalAlignment(JLabel.CENTER);
-      alienNumber.setHorizontalAlignment(JLabel.CENTER);
-      relativeName.setHorizontalAlignment(JLabel.CENTER);
+      nameLabel.setHorizontalAlignment(JLabel.CENTER);
+      alienNumberLabel.setHorizontalAlignment(JLabel.CENTER);
+      relativeNameLabel.setHorizontalAlignment(JLabel.CENTER);
+      workflowLabel.setHorizontalAlignment(JLabel.CENTER);
       nameText.setHorizontalAlignment(JLabel.CENTER);
       alienNumberText.setHorizontalAlignment(JLabel.CENTER);
       relativeNameText.setHorizontalAlignment(JLabel.CENTER);
+      workflowText.setHorizontalAlignment(JLabel.CENTER);
       //sets the frame to be visible
       frame.setVisible(true);
 
       //makes all text fields not editable
       editChange(false, nameText, alienNumberText, relativeNameText);
+      workflowText.setEditable(false);
 
       //adds action to edit button so it can allow edits
       editButton.addActionListener(new ActionListener() {
@@ -143,6 +190,23 @@ class ReviewScreen{
          @Override
          public void actionPerformed(ActionEvent event){
             editChange(false, nameText, alienNumberText, relativeNameText);
+            //setting the new edited fields to the form
+            review.getForm().setName(nameText.getText());
+            review.getForm().setAN(Integer.parseInt(alienNumberText.getText()));
+            review.getForm().setRelativeName(relativeNameText.getText());
+            review.isComplete();
+            review.validAN();
+            review.toWorkflow();
+            frame.dispose();
+         }
+      });
+
+      //adds action to workflow button
+      workflowButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent event){
+            workflowLabel.setVisible(true);
+            workflowText.setVisible(true);
          }
       });
    }
@@ -151,9 +215,9 @@ class ReviewScreen{
     * Helper method that changes the editability of the text fields.
     * 
     * @param bool the editiability, true it change to editable, false otherwise.
-    * @param name the name text field.
-    * @param an the alien number text field.
-    * @param rn the relative number text field.
+    * @param nameText the name text field.
+    * @param alienNumberText the alien number text field.
+    * @param relativeNameText the relative number text field.
     */
    public static void editChange(boolean bool, JTextField nameText, JTextField alienNumberText, JTextField relativeNameText){
       nameText.setEditable(bool);

@@ -16,14 +16,20 @@ public class Workflow {
 	 */
 	private Immigrant form;
 
-	
-	//public Workflow(){}
+	/**
+	 * Constructor creates a worfklow with no immigrant form
+	 */
+	public Workflow(){
+		this.nextStep = -1;
+		this.form = null;
+	}
 
 	/**
 	 * Constructor creates the workflow and
 	 * initializes the immigrant form.
 	 */
 	public Workflow(Immigrant form) {
+		this.nextStep = -1;
 		this.form = form;
 	}
 
