@@ -155,10 +155,10 @@ class ReviewScreen{
     * @param an the alien number text field.
     * @param rn the relative number text field.
     */
-   public static void editChange(boolean bool, JTextField name, JTextField an, JTextField rn){
-      name.setEditable(bool);
-      an.setEditable(bool);
-      rn.setEditable(bool);
+   public static void editChange(boolean bool, JTextField nameText, JTextField alienNumberText, JTextField relativeNameText){
+      nameText.setEditable(bool);
+      alienNumberText.setEditable(bool);
+      relativeNameText.setEditable(bool);
    }
 
 }
