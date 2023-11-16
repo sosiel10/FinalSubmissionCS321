@@ -1,19 +1,24 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This class creates a review screen which allows the user 
  * to review and edit an exisiting Immigration form
  */
 class ReviewScreen{
+   
+
    /**
     * The workflow
     */
-   Workflow workflow;
+   private Workflow workflow;
 
    /**
     * The immigrant form.
     */
-   Immigrant form;
+   private Immigrant form;
 
    /**
     * Indicates the next step.
@@ -70,29 +75,90 @@ class ReviewScreen{
 
    public static void main(String args[]){
       JFrame frame = new JFrame("Review");
+      
+      //Creating all text and labels
       JLabel title = new JLabel();
       JLabel name = new JLabel();
       JLabel alienNumber = new JLabel();
       JLabel relativeName = new JLabel();
-      JPanel panel = new JPanel();
+      JTextField nameText = new JTextField("John Doe");
+      JTextField alienNumberText = new JTextField("6598737");
+      JTextField relativeNameText = new JTextField("Doe John");
+      
+      //creates the panel
+      JPanel panel = new JPanel(new GridLayout(5, 2));
 
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(300,300);
-      JButton button1 = new JButton("Approve Edits");
-      JButton button2 = new JButton("Edit");
-      title.setText("Review Screen\n");
+      frame.setSize(600,600);
 
+      //creates the 3 buttons
+      JButton editButton = new JButton("Edit");
+      JButton approveButton = new JButton("Approve Edits");
+      JButton workflowButton = new JButton("Get Workflow Step");
+      
+      //sets texts for the labels
+      title.setText("Review Screen");
+      name.setText("Name: ");
+      alienNumber.setText("Alien Number: ");
+      relativeName.setText("Relative Name: ");
+
+      //adding everything to the panel
+      panel.add(title);
+      panel.add(workflowButton);
       panel.add(name);
+      panel.add(nameText);
       panel.add(alienNumber);
+      panel.add(alienNumberText);
       panel.add(relativeName);
-      panel.add(button1);
-      panel.add(button2);
+      panel.add(relativeNameText);
+      panel.add(editButton);
+      panel.add(approveButton);
+      //adding the frame to the panel
       frame.add(panel);
 
-      name.setText("Name: John Doe\n");
-      alienNumber.setText("Alien Number: 6598737\n");
-      relativeName.setText("Relative Name: Doe John\n");
-
+      //formats it so all the text is central
+      title.setHorizontalAlignment(JLabel.CENTER);
+      name.setHorizontalAlignment(JLabel.CENTER);
+      alienNumber.setHorizontalAlignment(JLabel.CENTER);
+      relativeName.setHorizontalAlignment(JLabel.CENTER);
+      nameText.setHorizontalAlignment(JLabel.CENTER);
+      alienNumberText.setHorizontalAlignment(JLabel.CENTER);
+      relativeNameText.setHorizontalAlignment(JLabel.CENTER);
+      //sets the frame to be visible
       frame.setVisible(true);
+
+      //makes all text fields not editable
+      editChange(false, nameText, alienNumberText, relativeNameText);
+
+      //adds action to edit button so it can allow edits
+      editButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent event){
+            editChange(true, nameText, alienNumberText, relativeNameText);
+         }
+      });
+
+      //adds action to approv button to accept the edits
+      approveButton.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent event){
+            editChange(false, nameText, alienNumberText, relativeNameText);
+         }
+      });
    }
+
+   /**
+    * Helper method that changes the editability of the text fields.
+    * 
+    * @param bool the editiability, true it change to editable, false otherwise.
+    * @param name the name text field.
+    * @param an the alien number text field.
+    * @param rn the relative number text field.
+    */
+   public static void editChange(boolean bool, JTextField name, JTextField an, JTextField rn){
+      name.setEditable(bool);
+      an.setEditable(bool);
+      rn.setEditable(bool);
+   }
+
 }
