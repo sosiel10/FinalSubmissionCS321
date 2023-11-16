@@ -1,7 +1,36 @@
+/**
+ * Class represents the application of an immigrant requesting
+ * entry for a relative.
+ */
 public class Immigrant {
+    /**
+     * Whether or not the form is complete.
+     */
     private boolean complete;
+
+    /**
+     * Whether or not the relative has already been granted access.
+     */
+    private boolean relativeAccessGranted;
+
+    /**
+     * Whether or not the alien number is valid.
+     */
     private boolean validAN;
-    private String name, relativeName;
+
+    /**
+     * The name of the immigrant.
+     */
+    private String name;
+
+    /**
+     * The name of the relative being requested for.
+     */
+    private String relativeName;
+
+    /**
+     * The alien number.
+     */
     private int aNumber;
 
     /**
@@ -22,52 +51,105 @@ public class Immigrant {
         this.validAN = false;
     }
 
+    /**
+     * Gets the complete field.
+     * 
+     * @return whether or not the form is complete.
+     */
     public boolean getComplete() {
         return complete;
     }
 
+    /**
+     * Sets the complete field.
+     * 
+     * @param complete whether or not the form is complete.
+     */
     public void setComplete(boolean complete) {
         this.complete = complete;
     }
 
+    /**
+     * Gets the validAN field.
+     *
+     * @return whether or not the alien number is valid.
+     */
     public boolean getValidAN() {
         return validAN;
     }
 
+    /**
+     * Sets the validAN field.
+     * 
+     * @param whether or not the alien number is valid.
+     */
     public void setValidAN(boolean validAN) {
         this.validAN = validAN;
     }
 
+    /**
+     * Gets the name of the immigrant.
+     * 
+     * @return the name.
+     */
     public String getName() {
-       
         return this.name;
     }
 
+    /**
+     * Sets the name of the immigrant.
+     * 
+     * @param name the new name.
+     */
     public void setName(String name) {
-        
+        this.name = name;
     }
 
+    /**
+     * Gets the alien number of the immigrant.
+     * 
+     * @return the alien number.
+     */
     public int getAN() {
-       
         return this.aNumber;
     }
 
+    /**
+     * Sets the alien number.
+     * 
+     * @param aNumber the new alien number.
+     */
     public void setAN(int aNumber) {
         //if aNumber is >9 digits or <=0, print a message indicating it is ot of bounds
+        this.aNumber = aNumber;
     }
 
+    /**
+     * Gets the name of the relative.
+     * 
+     * @return the name of the relative.
+     */
     public String getRelativeName() {
         
         return this.relativeName;
     }
 
+    /**
+     * Sets the name of the relative.
+     * 
+     * @param relativeName the new name.
+     */
     public void setRelativeName(String relativeName) {
-       
+        this.relativeName = relativeName;
     }
 
-    //checks if the relative has been granted access under a different immigrant
+    /**
+     * Checks if the relative has been granted access 
+     * under a different immigrant.
+     * 
+     * @return if the relative has been granted access under a different immigrant.
+     */
     public boolean relativeAccessGranted(){
-        //placeholder
-        return true;
+        return relativeAccessGranted;
     }
 }
