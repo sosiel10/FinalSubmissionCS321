@@ -2,12 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import java.util.concurrent.CountDownLatch;
 
 /**
  * This class creates a review screen which allows the user 
  * to review and edit an exisiting Immigration form
  */
 class ReviewScreen{
+   /**
+    * CountDownLatch for workflow.
+    *
+   private CountDownLatch latch;*/
    
 
    /**
@@ -61,6 +66,7 @@ class ReviewScreen{
       //sets the next step for approval
       this.nextStep = 1;
       this.workflow.setNextStep(1);
+      //latch.countDown();
    }
 
    /**
@@ -92,13 +98,13 @@ class ReviewScreen{
 
 
 
-   public static void main(String args[]){
+   public static void main(Workflow workflow){
       //Immigrant form
-      Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
-      immigrant.setValidAN(true);
+      //Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
+      //immigrant.setValidAN(true);
       //new workflow
-      Workflow workflow = new Workflow(immigrant);
-      workflow.setNextStep(0);
+      //Workflow workflow = new Workflow(immigrant);
+      //workflow.setNextStep(0);
       //Review Screen
       ReviewScreen review = new ReviewScreen(workflow);
       String name = review.getForm().getName();

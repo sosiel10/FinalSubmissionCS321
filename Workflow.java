@@ -1,3 +1,5 @@
+//import java.util.concurrent.CountDownLatch;
+
 /**
  * The class represents the workflow and how the
  * program will run.
@@ -75,5 +77,34 @@ public class Workflow {
 	 */
 	public boolean generateEmail() {
 		return false;
+	}
+
+	public static void main(String agrs[]){
+		//Immigrant form
+        Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
+        immigrant.setValidAN(true);
+        //new workflow
+        Workflow workflow = new Workflow(immigrant);
+        workflow.setNextStep(0);
+        int nextStep = workflow.getNextStep();
+		
+		//CountDownLatch latch = new CountDownLatch(1);
+
+        //while(nextStep != 1){
+        	if(nextStep == 0)
+				ReviewScreen.main(workflow);
+			nextStep = workflow.getNextStep();
+			if(nextStep == 1)
+				System.out.println("Workflow next step was updated properly");
+			
+				/*try{
+					latch.await();
+				}
+				catch(InterruptedException e){
+					System.out.print("Failed");
+				}*/
+      
+		//}
+		System.out.println("Finished");
 	}
 }
