@@ -9,12 +9,13 @@ public class DataEntry extends JFrame {
     static JLabel l;
     static JButton b;
 
-    public static String fname;
-    public static String Lname;
-    public static int Anum;
-    public static String Benefname;
-    public static String BeneLname;
-    public static Immigrant test;
+    public String fname;
+    public String Lname;
+    public int Anum;
+    public String Benefname;
+    public String BeneLname;
+    public Immigrant test = new Immigrant();
+    public int startReview = -1;
 
     public void showDisplay(){
         f = new JFrame("Data Entry");
@@ -38,19 +39,20 @@ public class DataEntry extends JFrame {
         p2.add(b);
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                System.out.println("First Name: " + fname);
-                System.out.println("Last Name: " + Lname);
-                System.out.println("Alien Number: " + Anum);
+               // System.out.println("First Name: " + fname);
+                //System.out.println("Last Name: " + Lname);
+                //System.out.println("Alien Number: " + Anum);
                 test.setAN(Anum);
-                System.out.println("Beneficiary First Name: " + Benefname);
-                System.out.println("Beneficiary Last Name: " + BeneLname);
+                //System.out.println("Beneficiary First Name: " + Benefname);
+                //System.out.println("Beneficiary Last Name: " + BeneLname);
                 test.setName(fname + " " + Lname);
                 test.setRelativeName(Benefname + " " + BeneLname);
+                startReview = 0;
                 //Immigrant im = new Immigrant(fname + " " + Lname, Anum, Benefname + " " + BeneLname); 
                //System.out.println("Immigrant Num:" + im.getAN());
                //System.out.println("Immigrant Name: " + im.getName());
                 //System.out.println("Reletive Name: " + im.getRelativeName());
-                System.exit(0);
+                f.dispose();
             }
         });
         p3.add(tf);
@@ -115,28 +117,40 @@ public class DataEntry extends JFrame {
         return BeneLname;
     }
 
-    public static void setfname(String str){
+    public void setfname(String str){
         fname = str;
     }
 
-    public static void setLname(String str){
+    public void setLname(String str){
         Lname = str;
     }
 
-    public static void setAnum(String str){
+    public void setAnum(String str){
         Anum = Integer.parseInt(str);
     }
 
-    public static void setBeneFname(String str){
+    public void setBeneFname(String str){
         Benefname = str;
     }
 
-    public static void setBenLname(String str){
+    public void setBenLname(String str){
         BeneLname = str;
     }
-
-    public static void main(String[] args) {
-        DataEntry a = new DataEntry();
-        a.showDisplay();
+    
+    public Immigrant getForm() {
+    	return test;
     }
+    
+    public int getStartReview() {
+    	return startReview;
+    }
+
+//    public static void main(String[] args) {
+//        DataEntry a = new DataEntry();
+//        a.showDisplay();
+//        do {
+//        System.out.println(a.startReview);
+//        }while(a.startReview !=0);
+//        System.out.println(a.startReview);
+//    }
 }

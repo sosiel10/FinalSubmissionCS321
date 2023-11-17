@@ -33,6 +33,12 @@ class ReviewScreen{
     */
    private int nextStep;
 
+   
+   
+   
+   public ReviewScreen(){
+
+	   }
    /**
     * Constructor initializes the workflow, immigrant form,
     * and the next step in the workflow.

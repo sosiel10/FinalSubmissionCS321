@@ -1,9 +1,9 @@
 //import java.util.concurrent.CountDownLatch;
 
 /**
- * The class represents the workflow and how the
- * program will run.
- */
+* The class represents the workflow and how the
+* program will run.
+*/
 public class Workflow {
 	/**
 	 * Indicates the next step.
@@ -17,7 +17,10 @@ public class Workflow {
 	 * The immigrant's form.
 	 */
 	private Immigrant form;
-
+	
+	// immigrant;
+	
+	//private int startReview;
 	/**
 	 * Constructor creates a worfklow with no immigrant form
 	 */
@@ -31,8 +34,9 @@ public class Workflow {
 	 * initializes the immigrant form.
 	 */
 	public Workflow(Immigrant form) {
-		this.nextStep = -1;
+		this.nextStep = 0;
 		this.form = form;
+		//this.startReview = 0;
 	}
 
 	/**
@@ -53,6 +57,13 @@ public class Workflow {
 		nextStep = step;
 	}
 
+//	public int getStartReview() {
+//		return startReview;
+//	}
+//	
+//	public void setStartReview(int start) {
+//		startReview = start;
+//	}
 	/**
 	 * Gets the immigrant form.
 	 * 
@@ -73,44 +84,49 @@ public class Workflow {
 	 * Generates an email to send to the applicant
 	 * depending on their qualification.
 	 * 
-	 * @return true if qualified, false if not.
 	 */
-	public boolean generateEmail() {
-		return false;
+	public void generateEmail() {
+		
 	}
 
 	public static void main(String agrs[]){
-		//Immigrant form
-        Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
-        immigrant.setValidAN(true);
-        //new workflow
-        Workflow workflow = new Workflow(immigrant);
-        workflow.setNextStep(0);
-        int nextStep = workflow.getNextStep();
-		
-		//CountDownLatch latch = new CountDownLatch(1);
-
-		//Creates new instance of Review Screen
-		ReviewScreen reviewScreen = new ReviewScreen(workflow);
-
-        //while(nextStep != 1){
-        	if(nextStep == 0){
-				reviewScreen.main(workflow);
-				workflow = reviewScreen.getWorkflow();
-				workflow.setForm(reviewScreen.getForm());
-        	}
-			nextStep = workflow.getNextStep();
-			if(nextStep == 1)
-				System.out.println("Workflow next step was updated properly");
+//		//Immigrant form
+//      Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
+//      immigrant.setValidAN(true);
+//      //new workflow
+//      Workflow workflow = new Workflow(immigrant);
+//      ReviewScreen reviewScreen = new ReviewScreen(workflow);
+		//int startReview = 0;
+		DataEntry a = new DataEntry();
+        a.showDisplay();
+        Immigrant immigrant = new Immigrant();
+        Workflow workflow = new Workflow();
+        ReviewScreen reviewScreen = new ReviewScreen();
+        
+        do {
+        immigrant = a.getForm();
+        immigrant.setValidAN(true);        
+        workflow = new Workflow(immigrant);
+        reviewScreen = new ReviewScreen(workflow);
+        System.out.println();
+        }while(a.startReview != 0);
+        //a.startReview;
+        //workflow.getNextStep();
+        //System.out.println(immigrant.getName());
+        //do {
+      if(workflow.getNextStep() == 0)
+      {
+    	  reviewScreen.main(workflow);
 			
-				/*try{
-					latch.await();
-				}
-				catch(InterruptedException e){
-					System.out.print("Failed");
-				}*/
-      
-		//}
-		System.out.println("Finished");
+      }
+        //} while(workflow.get != 0)
+      do {
+			workflow = reviewScreen.getWorkflow();
+			workflow.setForm(reviewScreen.getForm());
+      if(workflow.getNextStep()==1)
+      {
+    	 new ApprovalScreen(workflow);
+      }
+      }while(workflow.getNextStep()!=1);
 	}
 }
