@@ -14,6 +14,7 @@ public class DataEntry extends JFrame {
     public static int Anum;
     public static String Benefname;
     public static String BeneLname;
+    public static Immigrant test;
 
     public void showDisplay(){
         f = new JFrame("Data Entry");
@@ -40,12 +41,13 @@ public class DataEntry extends JFrame {
                 System.out.println("First Name: " + fname);
                 System.out.println("Last Name: " + Lname);
                 System.out.println("Alien Number: " + Anum);
+                test.setAN(Anum);
                 System.out.println("Beneficiary First Name: " + Benefname);
                 System.out.println("Beneficiary Last Name: " + BeneLname);
-                Immigrant im = new Immigrant(fname + " " + Lname, Anum, Benefname + " " + BeneLname); 
-                System.out.println("Immigrant Num:" + im.getAN());
-                System.out.println("Immigrant Name: " + im.getName());
-                System.out.println("Reletive Name: " + im.getRelativeName());
+                //Immigrant im = new Immigrant(fname + " " + Lname, Anum, Benefname + " " + BeneLname); 
+               //System.out.println("Immigrant Num:" + im.getAN());
+               //System.out.println("Immigrant Name: " + im.getName());
+                //System.out.println("Reletive Name: " + im.getRelativeName());
                 System.exit(0);
             }
         });
