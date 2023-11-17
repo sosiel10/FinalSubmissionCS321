@@ -1,6 +1,11 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
 module CS321GroupProject {
-	requires javafx.controls;
-//	requires junit;
-	
-	opens application to javafx.graphics, javafx.fxml;
+	requires java.desktop;
+	requires junit;
+	requires org.junit.jupiter.api;
 }
