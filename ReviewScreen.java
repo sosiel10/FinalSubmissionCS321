@@ -79,6 +79,15 @@ class ReviewScreen{
    }
 
    /**
+    * Gets the updated workflow.
+    * 
+    * @return the workflow.
+    */
+   public Workflow getWorkflow(){
+      return workflow;
+   }
+
+   /**
     * Gets the next step of the workflow.
     * 
     * @return the next step.
