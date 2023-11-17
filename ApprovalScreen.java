@@ -39,6 +39,7 @@ public class ApprovalScreen extends JFrame {
 				//boolean emailSent = workflow.generateEmail();
 				JOptionPane.showMessageDialog(ApprovalScreen.this, "Application Approved and Email Sent!");
 				workflow.setNextStep(2);
+				workflow.generateEmail();
 				// Close the window
 				ApprovalScreen.this.dispose();
 			}
