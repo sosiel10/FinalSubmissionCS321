@@ -62,9 +62,8 @@ public class ApprovalScreen extends JFrame {
 		getNextButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// get nect form
+				// get next form
 				workflow.getForm();
-				//JOptionPane.showMessageDialog(ApprovalScreen.this, "Sent back for Review");
 				ApprovalScreen.this.dispose();
 			}
 		});
