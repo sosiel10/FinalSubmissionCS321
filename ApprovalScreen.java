@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class ApprovalScreen extends JFrame {
 	private Workflow workflow;
 	private JLabel nameLabel, aNumberLabel, relativeNameLabel;
-	private JButton approveButton, reviewButton;
+	private JButton approveButton, reviewButton, getNextButton;
 
 	public ApprovalScreen(Workflow workflow) {
 		this.workflow = workflow;
@@ -16,7 +16,7 @@ public class ApprovalScreen extends JFrame {
 	private void GUI() {
 		setTitle("Approval Screen");
 		setSize(400, 300);
-		setLayout(new GridLayout(5, 1));
+		setLayout(new GridLayout(10, 2));
 
 		// Create labels
 		nameLabel = new JLabel("Name: " + workflow.getForm().getName());
@@ -29,8 +29,10 @@ public class ApprovalScreen extends JFrame {
 		// Create buttons
 		approveButton = new JButton("Approve");
 		reviewButton = new JButton("Send Back to Review");
+		getNextButton = new JButton("Get Next Form");
 		add(approveButton);
 		add(reviewButton);
+		add(getNextButton);
 
 		// Add approve button pop up
 		approveButton.addActionListener(new ActionListener() {
@@ -52,6 +54,18 @@ public class ApprovalScreen extends JFrame {
 				// Send back to review
 				workflow.setNextStep(0);
 				JOptionPane.showMessageDialog(ApprovalScreen.this, "Sent back for Review");
+				ApprovalScreen.this.dispose();
+			}
+		});
+		
+		//add get next button pop up
+		getNextButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// get nect form
+				workflow.getForm();
+				//JOptionPane.showMessageDialog(ApprovalScreen.this, "Sent back for Review");
+				ApprovalScreen.this.dispose();
 			}
 		});
 
