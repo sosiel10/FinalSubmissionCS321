@@ -90,9 +90,15 @@ public class Workflow {
 		
 		//CountDownLatch latch = new CountDownLatch(1);
 
+		//Creates new instance of Review Screen
+		ReviewScreen reviewScreen = new ReviewScreen(workflow);
+
         //while(nextStep != 1){
-        	if(nextStep == 0)
-				ReviewScreen.main(workflow);
+        	if(nextStep == 0){
+				reviewScreen.main(workflow);
+				workflow = reviewScreen.getWorkflow();
+				workflow.setForm(reviewScreen.getForm());
+        	}
 			nextStep = workflow.getNextStep();
 			if(nextStep == 1)
 				System.out.println("Workflow next step was updated properly");
