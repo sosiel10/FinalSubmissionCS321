@@ -44,6 +44,8 @@ public class DataEntry extends JFrame {
                 test.setAN(Anum);
                 System.out.println("Beneficiary First Name: " + Benefname);
                 System.out.println("Beneficiary Last Name: " + BeneLname);
+                test.setName(fname + " " + Lname);
+                test.setRelativeName(Benefname + " " + BeneLname);
                 //Immigrant im = new Immigrant(fname + " " + Lname, Anum, Benefname + " " + BeneLname); 
                //System.out.println("Immigrant Num:" + im.getAN());
                //System.out.println("Immigrant Name: " + im.getName());
