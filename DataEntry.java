@@ -9,11 +9,11 @@ public class DataEntry extends JFrame {
     static JLabel l;
     static JButton b;
 
-    private static String fname;
-    private static String Lname;
-    private static int Anum;
-    private static String Benefname;
-    private static String BeneLname;
+    public static String fname;
+    public static String Lname;
+    public static int Anum;
+    public static String Benefname;
+    public static String BeneLname;
 
     public void showDisplay(){
         f = new JFrame("Data Entry");
@@ -42,6 +42,10 @@ public class DataEntry extends JFrame {
                 System.out.println("Alien Number: " + Anum);
                 System.out.println("Beneficiary First Name: " + Benefname);
                 System.out.println("Beneficiary Last Name: " + BeneLname);
+                Immigrant im = new Immigrant(fname + " " + Lname, Anum, Benefname + " " + BeneLname); 
+                System.out.println("Immigrant Num:" + im.getAN());
+                System.out.println("Immigrant Name: " + im.getName());
+                System.out.println("Reletive Name: " + im.getRelativeName());
                 System.exit(0);
             }
         });
