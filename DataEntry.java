@@ -9,11 +9,13 @@ public class DataEntry extends JFrame {
     static JLabel l;
     static JButton b;
 
-    public DataEntry() {
+    private static String fname;
+    private static String Lname;
+    private static int Anum;
+    private static String Benefname;
+    private static String BeneLname;
 
-    }
-
-    public static void main(String[] args) {
+    public void showDisplay(){
         f = new JFrame("Data Entry");
         l = new JLabel();
         b = new JButton("Submit");
@@ -22,25 +24,111 @@ public class DataEntry extends JFrame {
         JTextField tf = new JTextField("Enter Last Name");
         JTextField tf1 = new JTextField("Enter First Name");
         JTextField tf2 = new JTextField("Enter Alien Number");
-        JTextField tf3 = new JTextField("Enter  Reletive Last Name");
+        JTextField tf3 = new JTextField("Enter Reletive Last Name");
         JTextField tf4 = new JTextField("Enter Reletive First Name");
-        ActionListener act = new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+        l.setText("Please Enter Your Immigrant Request Form Data (Click Enter After Each Field Is Entered)");
+        JPanel p = new JPanel();
+        p.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        JPanel p2 = new JPanel();
+        p2.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        JPanel p3 = new JPanel();
+        p3.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        p.add(l);
+        p2.add(b);
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                System.out.println("First Name: " + fname);
+                System.out.println("Last Name: " + Lname);
+                System.out.println("Alien Number: " + Anum);
+                System.out.println("Beneficiary First Name: " + Benefname);
+                System.out.println("Beneficiary Last Name: " + BeneLname);
                 System.exit(0);
             }
-        };
-        b.addActionListener(act);
-        l.setText("Please Enter Your Immigrant Request Form Data ");
-        JPanel p = new JPanel();
-        p.add(l);
-        p.add(b);
-        p.add(tf);
-        p.add(tf1);
-        p.add(tf2);
-        p.add(tf3);
-        p.add(tf4);
-        f.add(p);
-        f.setSize(500, 500);
-        f.show();
+        });
+        p3.add(tf);
+        tf.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                setLname(tf.getText());
+                tf.setForeground(Color.GREEN);
+            }
+        });
+        p3.add(tf1);
+        tf1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                setfname(tf1.getText());
+                tf1.setForeground(Color.GREEN);
+            }
+        });
+        p3.add(tf2);
+        tf2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                setAnum(tf2.getText());
+                tf2.setForeground(Color.GREEN);
+            }
+        });
+        p3.add(tf3);
+        tf3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                setBenLname(tf3.getText());
+                tf3.setForeground(Color.GREEN);
+            }
+        });
+        p3.add(tf4);
+        tf4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                setBeneFname(tf4.getText());
+                tf4.setForeground(Color.GREEN);
+            }
+        });
+        f.add(p, BorderLayout.NORTH);
+        f.add(p2, BorderLayout.SOUTH);
+        f.add(p3, BorderLayout.CENTER);
+        f.setSize(550, 550);
+        f.setVisible(true); 
+    }
+
+    public String getfname(){
+        return fname;
+    }
+
+    public String getLname(){
+        return Lname;
+    }
+
+    public int getanAnum(){
+        return Anum;
+    }
+
+    public String getBeneFname(){
+        return Benefname;
+    }
+
+    public String getBenLname(){
+        return BeneLname;
+    }
+
+    public static void setfname(String str){
+        fname = str;
+    }
+
+    public static void setLname(String str){
+        Lname = str;
+    }
+
+    public static void setAnum(String str){
+        Anum = Integer.parseInt(str);
+    }
+
+    public static void setBeneFname(String str){
+        Benefname = str;
+    }
+
+    public static void setBenLname(String str){
+        BeneLname = str;
+    }
+
+    public static void main(String[] args) {
+        DataEntry a = new DataEntry();
+        a.showDisplay();
     }
 }
