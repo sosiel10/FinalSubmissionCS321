@@ -28,6 +28,11 @@ class ReviewScreen{
    private int nextStep;
 
    /**
+    * The frame of the screen.
+    */
+   private JFrame frame;
+
+   /**
     * Constructor initializes the workflow, immigrant form,
     * and the next step in the workflow.
     */
@@ -60,7 +65,6 @@ class ReviewScreen{
       //sets the next step for approval
       this.nextStep = 1;
       this.workflow.setNextStep(1);
-      //latch.countDown();
    }
 
    /**
@@ -118,7 +122,8 @@ class ReviewScreen{
       String relativeName = form.getRelativeName();
       int nextStep = getNextStep();
 
-      JFrame frame = new JFrame("Review");
+      //creates the frame
+      this.frame = new JFrame("Review");
       
       //Creating all text and labels
       JLabel title = new JLabel();
@@ -138,7 +143,7 @@ class ReviewScreen{
       //creates the 3 buttons
       JButton editButton = new JButton("Edit");
       JButton approveButton = new JButton("Approve Edits");
-      JButton workflowButton = new JButton("Get Workflow Step");
+      JButton workflowButton = new JButton("Get Next Form");
       
       //sets texts for the labels
       title.setText("Review Screen");
@@ -202,8 +207,10 @@ class ReviewScreen{
          @Override
          public void actionPerformed(ActionEvent event){
             //If there are no more forms to be reviewed, the window disposes
-            if(getNextForm() == null)
+            if(getNextForm() == null){
                frame.dispose();
+               frame.setVisible(false);
+            }
             else{
                nameText.setText(form.getName());
                alienNumberText.setText(Integer.toString(form.getAN()));
@@ -211,14 +218,6 @@ class ReviewScreen{
             }
          }
       });
-   }
-
-
-   /**
-    * Main method.
-    */
-   public static void main(){
-      
    }
 
    /**
@@ -235,4 +234,44 @@ class ReviewScreen{
       relativeNameText.setEditable(bool);
    }
 
+   /**
+    * Gets the frame to see if it has been disposed.
+    */
+   public JFrame getFrame() {
+      return this.frame;
+   }
+
+
+   /**
+    * Main method for testing purposes only.
+    */
+   public static void main(String[] args){
+      //Test immigrants
+      Immigrant immigrant1 = new Immigrant("John", 1111, "Bohn");
+      Immigrant immigrant2 = new Immigrant("Jim", 2222, "Bim");
+      Immigrant immigrant3 = new Immigrant("James", 3333, "Bames");
+      //Create workflow and add the immigrants
+      Workflow workflow = new Workflow();
+      workflow.addForm(immigrant1);
+      workflow.addForm(immigrant2);
+      workflow.addForm(immigrant3);
+      //assume next step is 0 now
+      ReviewScreen reviewScreen = new ReviewScreen(workflow);
+      //Run the screen and test
+      reviewScreen.runScreen();
+      //keeps the code from progressing until frame is disposed
+      while(reviewScreen.getFrame().isVisible()){
+         try{
+            Thread.sleep(100);
+         }
+         catch(InterruptedException e) {
+            e.printStackTrace();
+         }
+      }
+
+      //testing to make sure forms are properly updated
+      System.out.println(immigrant1.toString());
+      System.out.println(immigrant2.toString());
+      System.out.println(immigrant3.toString());
+   }
 }
