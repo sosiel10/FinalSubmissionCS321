@@ -27,7 +27,7 @@ public class WorkflowTest {
 	/**
 	 * Constructor creates a worfklow with no immigrant form
 	 */
-	public Workflow(){
+	public WorkflowTest(){
 		this.nextStep = -1;
 		this.formList = new ArrayList<>();
 	}
@@ -36,7 +36,7 @@ public class WorkflowTest {
 	 * Constructor creates the workflow and
 	 * initializes the immigrant form.
 	 */
-	public Workflow(Immigrant form) {
+	public WorkflowTest(Immigrant form) {
 		this.nextStep = 0;
 		this.formList = new ArrayList<>();
 		this.formList.add(form);
