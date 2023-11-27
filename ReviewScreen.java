@@ -27,12 +27,6 @@ class ReviewScreen{
     */
    private int nextStep;
 
-   
-   
-   
-   public ReviewScreen(){
-
-      }
    /**
     * Constructor initializes the workflow, immigrant form,
     * and the next step in the workflow.
@@ -119,16 +113,10 @@ class ReviewScreen{
     * Runs the screen.
     */
    public void runScreen(){
-      //ReviewScreen review = new ReviewScreen(workflow);
-      String name = getForm().getName();
-      int alienNumber = getForm().getAN();
-      String relativeName = getForm().getRelativeName();
-      String workflowStep = "";
+      String name = form.getName();
+      int alienNumber = form.getAN();
+      String relativeName = form.getRelativeName();
       int nextStep = getNextStep();
-      if(nextStep == 0)
-         workflowStep = "Review";
-      else if(nextStep == 1)
-         workflowStep = "Approval";
 
       JFrame frame = new JFrame("Review");
       
@@ -137,16 +125,12 @@ class ReviewScreen{
       JLabel nameLabel = new JLabel();
       JLabel alienNumberLabel = new JLabel();
       JLabel relativeNameLabel = new JLabel();
-      JLabel workflowLabel = new JLabel();
-      workflowLabel.setVisible(false);
       JTextField nameText = new JTextField(name);
       JTextField alienNumberText = new JTextField(Integer.toString(alienNumber));
       JTextField relativeNameText = new JTextField(relativeName);
-      JTextField workflowText = new JTextField(workflowStep);
-      workflowText.setVisible(false);
       
       //creates the panel
-      JPanel panel = new JPanel(new GridLayout(6, 2));
+      JPanel panel = new JPanel(new GridLayout(5, 2));
 
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setSize(600,600);
@@ -161,13 +145,10 @@ class ReviewScreen{
       nameLabel.setText("Name: ");
       alienNumberLabel.setText("Alien Number: ");
       relativeNameLabel.setText("Relative Name: ");
-      workflowLabel.setText("Workflow Step: ");
 
       //adding everything to the panel
       panel.add(title);
       panel.add(workflowButton);
-      panel.add(workflowLabel);
-      panel.add(workflowText);
       panel.add(nameLabel);
       panel.add(nameText);
       panel.add(alienNumberLabel);
@@ -184,17 +165,14 @@ class ReviewScreen{
       nameLabel.setHorizontalAlignment(JLabel.CENTER);
       alienNumberLabel.setHorizontalAlignment(JLabel.CENTER);
       relativeNameLabel.setHorizontalAlignment(JLabel.CENTER);
-      workflowLabel.setHorizontalAlignment(JLabel.CENTER);
       nameText.setHorizontalAlignment(JLabel.CENTER);
       alienNumberText.setHorizontalAlignment(JLabel.CENTER);
       relativeNameText.setHorizontalAlignment(JLabel.CENTER);
-      workflowText.setHorizontalAlignment(JLabel.CENTER);
       //sets the frame to be visible
       frame.setVisible(true);
 
       //makes all text fields not editable
       editChange(false, nameText, alienNumberText, relativeNameText);
-      workflowText.setEditable(false);
 
       //adds action to edit button so it can allow edits
       editButton.addActionListener(new ActionListener() {
@@ -210,13 +188,12 @@ class ReviewScreen{
          public void actionPerformed(ActionEvent event){
             editChange(false, nameText, alienNumberText, relativeNameText);
             //setting the new edited fields to the form
-            getForm().setName(nameText.getText());
-            getForm().setAN(Integer.parseInt(alienNumberText.getText()));
-            getForm().setRelativeName(relativeNameText.getText());
+            form.setName(nameText.getText());
+            form.setAN(Integer.parseInt(alienNumberText.getText()));
+            form.setRelativeName(relativeNameText.getText());
             isComplete();
             validAN();
             toWorkflow();
-            frame.dispose();
          }
       });
 
@@ -224,8 +201,14 @@ class ReviewScreen{
       workflowButton.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent event){
-            workflowLabel.setVisible(true);
-            workflowText.setVisible(true);
+            //If there are no more forms to be reviewed, the window disposes
+            if(getNextForm() == null)
+               frame.dispose();
+            else{
+               nameText.setText(form.getName());
+               alienNumberText.setText(Integer.toString(form.getAN()));
+               relativeNameText.setText(form.getRelativeName());
+            }
          }
       });
    }

@@ -126,7 +126,7 @@ public class Workflow {
     a.showDisplay();
     Immigrant immigrant = new Immigrant();
     Workflow workflow = new Workflow();
-    ReviewScreen reviewScreen = new ReviewScreen();
+    ReviewScreen reviewScreen/* = new ReviewScreen()*/;
         
     do {
       immigrant = a.getForm();
