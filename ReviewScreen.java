@@ -9,11 +9,6 @@ import java.awt.event.ActionListener;
  * to review and edit an exisiting Immigration form
  */
 class ReviewScreen{
-   /**
-    * CountDownLatch for workflow.
-    *
-   private CountDownLatch latch;*/
-   
 
    /**
     * The workflow
@@ -38,7 +33,7 @@ class ReviewScreen{
    
    public ReviewScreen(){
 
-	   }
+      }
    /**
     * Constructor initializes the workflow, immigrant form,
     * and the next step in the workflow.
@@ -82,6 +77,15 @@ class ReviewScreen{
     */
    public Immigrant getForm() {
       return form;
+   }
+
+   /**
+    * Gets the next immigrant form.
+    * 
+    * @return the next form.
+    */
+   public Immigrant getNextForm(){
+      return this.workflow.getNextForm();
    }
 
    /**

@@ -1,4 +1,4 @@
-//import java.util.concurrent.CountDownLatch;
+import java.util.ArrayList;
 
 /**
 * The class represents the workflow and how the
@@ -17,16 +17,20 @@ public class Workflow {
 	 * The immigrant's form.
 	 */
 	private Immigrant form;
-	
-	// immigrant;
-	
-	//private int startReview;
+
+	/**
+	 * List of immigrant forms
+	 */
+	ArrayList<Immigrant> formList;
+
+
 	/**
 	 * Constructor creates a worfklow with no immigrant form
 	 */
 	public Workflow(){
 		this.nextStep = -1;
 		this.form = null;
+		this.formList = new ArrayList<>();
 	}
 
 	/**
@@ -36,7 +40,8 @@ public class Workflow {
 	public Workflow(Immigrant form) {
 		this.nextStep = 0;
 		this.form = form;
-		//this.startReview = 0;
+		this.formList = new ArrayList<>();
+		this.formList.add(form);
 	}
 
 	/**
@@ -57,13 +62,6 @@ public class Workflow {
 		nextStep = step;
 	}
 
-//	public int getStartReview() {
-//		return startReview;
-//	}
-//	
-//	public void setStartReview(int start) {
-//		startReview = start;
-//	}
 	/**
 	 * Gets the immigrant form.
 	 * 
@@ -78,6 +76,33 @@ public class Workflow {
 	 */
 	public void setForm(Immigrant form) {
 		this.form = form;
+	}
+
+	/**
+	 * Gets next immigrant form in the list for review.
+	 * 
+	 * @return the next form.
+	 */
+	public Immigrant getNextForm(){
+		if(formList.size() == 0)
+			return null;
+
+		Immigrant form = null;
+		for(int i=0; i<formList.size(); i++){
+			form = formList.get(i);
+			if(!form.getComplete())
+				return form;
+		}
+		return null;
+	}
+
+	/**
+	 * Adds a form to the list.
+	 * 
+	 * @param form the form.
+	 */
+	public void addForm(Immigrant form){
+		this.formList.add(form);
 	}
 
 	/**
@@ -98,35 +123,31 @@ public class Workflow {
 //      ReviewScreen reviewScreen = new ReviewScreen(workflow);
 		//int startReview = 0;
 		DataEntry a = new DataEntry();
-        a.showDisplay();
-        Immigrant immigrant = new Immigrant();
-        Workflow workflow = new Workflow();
-        ReviewScreen reviewScreen = new ReviewScreen();
+    a.showDisplay();
+    Immigrant immigrant = new Immigrant();
+    Workflow workflow = new Workflow();
+    ReviewScreen reviewScreen = new ReviewScreen();
         
-        do {
-        immigrant = a.getForm();
-        immigrant.setValidAN(true);        
-        workflow = new Workflow(immigrant);
-        reviewScreen = new ReviewScreen(workflow);
-        System.out.println();
-        }while(a.startReview != 0);
-        //a.startReview;
-        //workflow.getNextStep();
-        //System.out.println(immigrant.getName());
-        //do {
-      if(workflow.getNextStep() == 0)
-      {
-    	  reviewScreen.main(workflow);
-			
-      }
-        //} while(workflow.get != 0)
-      do {
+    do {
+      immigrant = a.getForm();
+      immigrant.setValidAN(true);        
+      workflow = new Workflow(immigrant);
+      reviewScreen = new ReviewScreen(workflow);
+      System.out.println();
+    }while(a.startReview != 0);
+       
+    if(workflow.getNextStep() == 0)
+    {
+  	  reviewScreen.main(workflow);			
+    }
+
+    do {
 			workflow = reviewScreen.getWorkflow();
 			workflow.setForm(reviewScreen.getForm());
       if(workflow.getNextStep()==1)
       {
     	 new ApprovalScreen(workflow);
       }
-      }while(workflow.getNextStep()!=1);
+    }while(workflow.getNextStep()!=1);
 	}
 }
