@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.util.concurrent.CountDownLatch;
 
 /**
  * This class creates a review screen which allows the user 
@@ -40,7 +39,7 @@ class ReviewScreen{
     */
    public ReviewScreen(Workflow workflow){
       this.workflow = workflow;
-      this.form = this.workflow.getForm();
+      this.form = this.workflow.getNextForm();
       this.nextStep = this.workflow.getNextStep();
    }
 
@@ -85,6 +84,7 @@ class ReviewScreen{
     * @return the next form.
     */
    public Immigrant getNextForm(){
+      this.form = this.workflow.getNextForm();
       return this.workflow.getNextForm();
    }
 
@@ -115,22 +115,16 @@ class ReviewScreen{
       
    }
 
-
-
-   public static void main(Workflow workflow){
-      //Immigrant form
-      //Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
-      //immigrant.setValidAN(true);
-      //new workflow
-      //Workflow workflow = new Workflow(immigrant);
-      //workflow.setNextStep(0);
-      //Review Screen
-      ReviewScreen review = new ReviewScreen(workflow);
-      String name = review.getForm().getName();
-      int alienNumber = review.getForm().getAN();
-      String relativeName = review.getForm().getRelativeName();
+   /**
+    * Runs the screen.
+    */
+   public void runScreen(){
+      //ReviewScreen review = new ReviewScreen(workflow);
+      String name = getForm().getName();
+      int alienNumber = getForm().getAN();
+      String relativeName = getForm().getRelativeName();
       String workflowStep = "";
-      int nextStep = review.getNextStep();
+      int nextStep = getNextStep();
       if(nextStep == 0)
          workflowStep = "Review";
       else if(nextStep == 1)
@@ -216,12 +210,12 @@ class ReviewScreen{
          public void actionPerformed(ActionEvent event){
             editChange(false, nameText, alienNumberText, relativeNameText);
             //setting the new edited fields to the form
-            review.getForm().setName(nameText.getText());
-            review.getForm().setAN(Integer.parseInt(alienNumberText.getText()));
-            review.getForm().setRelativeName(relativeNameText.getText());
-            review.isComplete();
-            review.validAN();
-            review.toWorkflow();
+            getForm().setName(nameText.getText());
+            getForm().setAN(Integer.parseInt(alienNumberText.getText()));
+            getForm().setRelativeName(relativeNameText.getText());
+            isComplete();
+            validAN();
+            toWorkflow();
             frame.dispose();
          }
       });
@@ -236,6 +230,14 @@ class ReviewScreen{
       });
    }
 
+
+   /**
+    * Main method.
+    */
+   public static void main(){
+      
+   }
+
    /**
     * Helper method that changes the editability of the text fields.
     * 
@@ -244,7 +246,7 @@ class ReviewScreen{
     * @param alienNumberText the alien number text field.
     * @param relativeNameText the relative number text field.
     */
-   public static void editChange(boolean bool, JTextField nameText, JTextField alienNumberText, JTextField relativeNameText){
+   private void editChange(boolean bool, JTextField nameText, JTextField alienNumberText, JTextField relativeNameText){
       nameText.setEditable(bool);
       alienNumberText.setEditable(bool);
       relativeNameText.setEditable(bool);

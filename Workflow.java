@@ -138,7 +138,7 @@ public class Workflow {
        
     if(workflow.getNextStep() == 0)
     {
-  	  reviewScreen.main(workflow);			
+  	  reviewScreen.runScreen();			
     }
 
     do {
