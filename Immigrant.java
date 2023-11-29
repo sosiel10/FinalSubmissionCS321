@@ -121,9 +121,11 @@ public class Immigrant {
      * @param aNumber the new alien number.
      */
     public void setAN(int aNumber) {
-        if(aNumber <= 0 || aNumber > 1000000000)
-            setValidAN(false);
         this.aNumber = aNumber;
+        if(aNumber <= 0 || aNumber > 1000000000){
+            setValidAN(false);
+            return;
+        }
         setValidAN(false);
     }
 
