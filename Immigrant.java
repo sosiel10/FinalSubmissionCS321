@@ -126,7 +126,7 @@ public class Immigrant {
             setValidAN(false);
             return;
         }
-        setValidAN(false);
+        setValidAN(true);
     }
 
     /**
