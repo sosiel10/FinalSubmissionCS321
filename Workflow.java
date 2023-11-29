@@ -115,18 +115,11 @@ public class Workflow {
 	}
 
 	public static void main(String agrs[]){
-//		//Immigrant form
-//      Immigrant immigrant = new Immigrant("John Doe", 6598737, "Doe John");
-//      immigrant.setValidAN(true);
-//      //new workflow
-//      Workflow workflow = new Workflow(immigrant);
-//      ReviewScreen reviewScreen = new ReviewScreen(workflow);
-		//int startReview = 0;
 		DataEntry a = new DataEntry();
     a.showDisplay();
     Immigrant immigrant = new Immigrant();
     Workflow workflow = new Workflow();
-    ReviewScreen reviewScreen/* = new ReviewScreen()*/;
+    ReviewScreen reviewScreen;
         
     do {
       immigrant = a.getForm();
@@ -136,18 +129,26 @@ public class Workflow {
       System.out.println();
     }while(a.startReview != 0);
        
+    //Review step commences if next step is set to review
     if(workflow.getNextStep() == 0)
     {
   	  reviewScreen.runScreen();			
-    }
+	    while(reviewScreen.getFrame().isVisible()){
+	    	try{
+			    Thread.sleep(100);
+	     	}
+	      catch(InterruptedException e) {
+	         e.printStackTrace();
+	      }
+	  	}
+	  }
 
-    do {
+    //do {
 			workflow = reviewScreen.getWorkflow();
-			workflow.setForm(reviewScreen.getForm());
       if(workflow.getNextStep()==1)
       {
     	 new ApprovalScreen(workflow);
       }
-    }while(workflow.getNextStep()!=1);
+    //}while(workflow.getNextStep()!=1);
 	}
 }
