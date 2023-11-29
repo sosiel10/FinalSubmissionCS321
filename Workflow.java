@@ -60,7 +60,7 @@ public class Workflow {
 	 * @param step the next step.
 	 * @return whether or not it was successful.
 	 */
-	public bool setNextStep(int step) {
+	public boolean setNextStep(int step) {
 		if(step > 2 || step < 0){
 			return false;
 		}

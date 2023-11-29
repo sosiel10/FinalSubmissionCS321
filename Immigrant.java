@@ -151,7 +151,7 @@ public class Immigrant {
      * 
      * @param accessGranted whether or not access has been granted.
      */
-    public void setAccessGranted(bool accessGranted){
+    public void setAccessGranted(boolean accessGranted){
         this.relativeAccessGranted = accessGranted;
     }
 
