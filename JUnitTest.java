@@ -80,7 +80,7 @@ public class JUnitTest {
 		//check to see if number is valid.
 		assertEquals(false, immigrant.getValidAN());
 		//setting AN to 1 billion
-		immigrant.setAN(1000000001);
+		immigrant.setAN(1000000000);
 		//check to see if number is valid.
 		assertEquals(false, immigrant.getValidAN());
 		//setting AN to 0

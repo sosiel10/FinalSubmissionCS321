@@ -122,7 +122,7 @@ public class Immigrant {
      */
     public void setAN(int aNumber) {
         this.aNumber = aNumber;
-        if(aNumber <= 0 || aNumber > 1000000000){
+        if(aNumber <= 0 || aNumber > 999999999){
             setValidAN(false);
             return;
         }
