@@ -35,13 +35,20 @@ public class JUnitTest {
 	public void nextStepInput(){
 		Workflow wf = new Workflow();
 		
+		wf.setNextStep(0);
+		//Checking if next step for Review works, assuming data entry set the next step appropriately
+		assertEquals(0, wf.getNextStep());
 		wf.setNextStep(1);
-		//Checking if Data Entry step works
+		//Checking if next step for Approval works, assuming review set the next step appropriately
 		assertEquals(1, wf.getNextStep());
-		//Checking if Review step works
+		wf.setNextStep(2);
+		//Checking if next step for Finished works, assuming approval set the next step appropriately
 		assertEquals(2, wf.getNextStep());
-		//Checking if Approval step works
-		assertEquals(3, wf.getNextStep());
+		//Checking if input other than 0,1,2 is valid since it should not be
+		assertEquals(false, wf.setNextStep(-1);
+		assertEquals(2, wf.getNextStep());
+		assertEquals(false, wf.setNextStep(3);
+		assertEquals(2, wf.getNextStep());
 	}
 
 	//Immigrant class
@@ -71,14 +78,18 @@ public class JUnitTest {
 		//setting AN to -1
 		immigrant.setAN(-1);
 		//check to see if number is valid.
-		assertEquals(true, immigrant.getValidAN());
+		assertEquals(false, immigrant.getValidAN());
 		//setting AN to 1 billion
 		immigrant.setAN(1000000000);
 		//check to see if number is valid.
-		assertEquals(true, immigrant.getValidAN());
+		assertEquals(false, immigrant.getValidAN());
 		//setting AN to 0
 		immigrant.setAN(0);
 		//check to see if number is valid.
+		assertEquals(false, immigrant.getValidAN());
+		//setting AN to valid number
+		immigrant.setAN(1234567);
+		//check to make sure it is valid
 		assertEquals(true, immigrant.getValidAN());
 	}
 }

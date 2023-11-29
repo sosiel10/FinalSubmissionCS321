@@ -37,7 +37,8 @@ public class Immigrant {
      * Default constructor creates a blank immigrant form.
      */
     public Immigrant() {
-
+        this.complete = false;
+        this.validAN = false;
     }
     /**
      * Constructor that takes in name, alien number and relative name 
@@ -120,8 +121,10 @@ public class Immigrant {
      * @param aNumber the new alien number.
      */
     public void setAN(int aNumber) {
-        //if aNumber is >9 digits or <=0, print a message indicating it is ot of bounds
+        if(aNumber <= 0 || aNumber > 1000000000)
+            setValidAN(false);
         this.aNumber = aNumber;
+        setValidAN(false);
     }
 
     /**
@@ -141,6 +144,15 @@ public class Immigrant {
      */
     public void setRelativeName(String relativeName) {
         this.relativeName = relativeName;
+    }
+
+    /**
+     * Updates whether or not relative has been granted access.
+     * 
+     * @param accessGranted whether or not access has been granted.
+     */
+    public void setAccessGranted(bool accessGranted){
+        this.relativeAccessGranted = accessGranted;
     }
 
     /**

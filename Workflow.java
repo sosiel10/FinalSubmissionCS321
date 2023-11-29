@@ -54,12 +54,18 @@ public class Workflow {
 	}
 
 	/**
-	 * Sets the next step of the workflow.
+	 * Sets the next step of the workflow. Returns true if
+	 * it was set properly and false otherwise.
 	 * 
 	 * @param step the next step.
+	 * @return whether or not it was successful.
 	 */
-	public void setNextStep(int step) {
+	public bool setNextStep(int step) {
+		if(step > 2 || step < 0){
+			return false;
+		}
 		nextStep = step;
+		return true;
 	}
 
 	/**
@@ -114,7 +120,12 @@ public class Workflow {
 		
 	}
 
-	public static void main(String agrs[]){
+	/**
+	 * Main method to execute the workflow process.
+	 * 
+	 * @param args the command line arguments if applicable.
+	 */
+	public static void main(String args[]){
 		DataEntry a = new DataEntry();
     a.showDisplay();
     Immigrant immigrant = new Immigrant();
@@ -132,7 +143,11 @@ public class Workflow {
     //Review step commences if next step is set to review
     if(workflow.getNextStep() == 0)
     {
-  	  reviewScreen.runScreen();			
+    	//Runs the review screen
+  	  reviewScreen.runScreen();
+  	  //Keeps review screen running until all forms have been reviewed
+  	  //You have to approve edits to approve each form and get every workflow item
+  	  //until there are no more forms to review			
 	    while(reviewScreen.getFrame().isVisible()){
 	    	try{
 			    Thread.sleep(100);
@@ -144,6 +159,7 @@ public class Workflow {
 	  }
 
     //do {
+	  	//updates the workflow
 			workflow = reviewScreen.getWorkflow();
       if(workflow.getNextStep()==1)
       {
