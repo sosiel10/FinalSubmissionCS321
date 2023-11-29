@@ -45,9 +45,9 @@ public class JUnitTest {
 		//Checking if next step for Finished works, assuming approval set the next step appropriately
 		assertEquals(2, wf.getNextStep());
 		//Checking if input other than 0,1,2 is valid since it should not be
-		assertEquals(false, wf.setNextStep(-1);
+		assertEquals(false, wf.setNextStep(-1));
 		assertEquals(2, wf.getNextStep());
-		assertEquals(false, wf.setNextStep(3);
+		assertEquals(false, wf.setNextStep(3));
 		assertEquals(2, wf.getNextStep());
 	}
 
