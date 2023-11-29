@@ -116,8 +116,8 @@ public class Workflow {
 	 * depending on their qualification.
 	 * 
 	 */
-	public void generateEmail() {
-		
+	public boolean generateEmail() {
+		return true;
 	}
 
 	/**
