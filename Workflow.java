@@ -117,7 +117,13 @@ public class Workflow {
 	 * 
 	 */
 	public boolean generateEmail() {
-		return true;
+		if (form.getComplete() == false)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
 	}
 
 	/**
