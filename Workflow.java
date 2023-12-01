@@ -82,6 +82,15 @@ public class Workflow {
 	}
 
 	/**
+	 * Gets the immigrant form list.
+	 * 
+	 * @return the form list.
+	 */
+	public ArrayList<Immigrant> getFormList(){
+		return formList;
+	}
+
+	/**
 	 * Sets the form if needed.
 	 */
 	public void setForm(Immigrant form) {
