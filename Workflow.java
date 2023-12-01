@@ -143,6 +143,17 @@ public class Workflow {
 		}
 	}
 	
+	public void removeCurrentForm() {
+	    if (currentFormIndex < formList.size()) {
+	        formList.remove(currentFormIndex);
+
+	        // Adjust currentFormIndex if necessary
+	        if (currentFormIndex >= formList.size()) {
+	            currentFormIndex = formList.size() - 1;
+	        }
+	    }
+	}
+	
 	/**
 	 * Testing
 	 */

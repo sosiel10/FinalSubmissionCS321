@@ -43,6 +43,9 @@ public class ApprovalScreen extends JFrame {
 		        JOptionPane.showMessageDialog(ApprovalScreen.this, "Application Approved!");
 		        workflow.setNextStep(2);
 		        workflow.generateEmail();
+		        
+		     // Remove the current form from the list
+		        workflow.removeCurrentForm();
 
 		        // Clear labels
 		        nameLabel.setText("Name: ");
