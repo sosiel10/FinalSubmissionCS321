@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+*Data Entry Class
+*uses a jframe to create screen
+*
+*/
 public class DataEntry extends JFrame {
     static JFrame f;
     static JLabel l;
