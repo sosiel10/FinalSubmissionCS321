@@ -71,7 +71,7 @@ public class ApprovalScreen extends JFrame {
 				relativeNameLabel.setText("Relative's Name: ");
 			}
 		});
-
+		//getNextButton
 		getNextButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
