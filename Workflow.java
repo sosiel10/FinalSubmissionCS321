@@ -227,7 +227,7 @@ public class Workflow {
 			//Update the workflow
 
 			if(workflow.getNextStep() == 2)
-				continue;
+				break;
 		}
 		System.exit(0);
 	}
