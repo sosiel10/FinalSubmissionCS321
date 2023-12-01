@@ -137,7 +137,10 @@ public class Workflow {
         Immigrant nextForm = formList.get(currentFormIndex);
         return nextForm;
     }
-
+	public void increaseCurrentFromIndex() {
+		currentFormIndex++;
+	}
+	
 	/**
 	 * Adds a form to the list.
 	 * 
@@ -197,12 +200,13 @@ public class Workflow {
       immigrant = a.getForm();
       immigrant.setValidAN(true);        
       workflow = new Workflow(immigrant);
-      reviewScreen = new ReviewScreen(workflow);
+      //reviewScreen = new ReviewScreen(workflow);
       System.out.println();
     }while(a.startReview != 0);
     //initializes immigrant forms
     workflow.initializeFormsForTesting();
     while(!workflow.isEmpty()){
+    	reviewScreen = new ReviewScreen(workflow);
     	//Review step commences if next step is set to review
 	    if(workflow.getNextStep() == 0)
 	    {
@@ -236,9 +240,7 @@ public class Workflow {
  	    	}
 			}
 			//Update the workflow
-
-			if(workflow.getNextStep() == 2)
-				break;
+      		workflow = appScreen.getWorkflow();
 		}
 		System.exit(0);
 	}

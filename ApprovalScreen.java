@@ -61,7 +61,9 @@ public class ApprovalScreen extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				workflow.setNextStep(0);
+				workflow.getForm().setComplete(false);
 				JOptionPane.showMessageDialog(ApprovalScreen.this, "Sent back for Review");
+				workflow.increaseCurrentFromIndex();
 
 				// Clear labels
 				nameLabel.setText("Name: ");
