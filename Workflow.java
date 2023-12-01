@@ -124,7 +124,7 @@ public class Workflow {
 	public Immigrant getNextFormApproval(){
         if(currentFormIndex >= formList.size()-1)
             return null;
-        currentFormIndex++; // Move to the next form
+        //currentFormIndex++; // Move to the next form
         Immigrant nextForm = formList.get(currentFormIndex);
         return nextForm;
     }
@@ -182,6 +182,7 @@ public class Workflow {
     Immigrant immigrant = new Immigrant();
     Workflow workflow = new Workflow();
     ReviewScreen reviewScreen;
+    ApprovalScreen appScreen;
         
     do {
       immigrant = a.getForm();
@@ -212,10 +213,11 @@ public class Workflow {
 		  }
 		  //Update the workflow
 			workflow = reviewScreen.getWorkflow();
+			appScreen = new ApprovalScreen(workflow);
       if(workflow.getNextStep()==1)
       {
-    		new ApprovalScreen(workflow);
-    		while(ApprovalScreen.getisClosed() == false){
+    		appScreen.GUI();
+    		while(appScreen.getisClosed() == false){
  	    		try{
  			  		Thread.sleep(100);
  	     		}
