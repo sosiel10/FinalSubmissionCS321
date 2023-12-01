@@ -131,7 +131,7 @@ public class Workflow {
 	 * @return the next form.
 	 */
 	public Immigrant getNextFormApproval(){
-        if(currentFormIndex >= formList.size()-1)
+        if(currentFormIndex >= formList.size())
             return null;
         //currentFormIndex++; // Move to the next form
         Immigrant nextForm = formList.get(currentFormIndex);
