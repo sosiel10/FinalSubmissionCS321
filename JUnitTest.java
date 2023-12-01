@@ -61,11 +61,13 @@ public class JUnitTest {
 	@Test
 	public void checkRelative(){
 		Immigrant immigrant = new Immigrant("Aleem Sarwar", 5, "John Doe");
+		immigrant.relativeAccessGranted = true;
+		Immigrant immigrant2 = new Immigrant("Aleem Sarwar", 5, "John Doe");
 		//setting the relative name to someone that has not been granted access
-		immigrant.setRelativeName("Christopher Jackson");
+		immigrant2.setRelativeName("Christopher Jackson");
 		assertEquals(false, immigrant.relativeAccessGranted());
 		//setting the relative name to someone that has been granted access
-		immigrant.setRelativeName("John Doe");
+		immigrant.setRelativeName("Aleem Sarwar");
 		assertEquals(true, immigrant.relativeAccessGranted());
 	}
 
