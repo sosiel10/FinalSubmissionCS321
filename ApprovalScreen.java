@@ -7,6 +7,7 @@ public class ApprovalScreen extends JFrame {
 	private Workflow workflow;
 	private JLabel nameLabel, aNumberLabel, relativeNameLabel;
 	private JButton approveButton, reviewButton, getNextButton,closeButton;;
+	private static boolean isClosed = false;
 
 	public ApprovalScreen(Workflow workflow) {
 		this.workflow = workflow;
@@ -91,6 +92,7 @@ public class ApprovalScreen extends JFrame {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        ApprovalScreen.this.dispose();
+		        isClosed = true;
 		    }
 		});
 
@@ -100,5 +102,9 @@ public class ApprovalScreen extends JFrame {
 	//  public static void main(Workflow workflow) {
 	//  new ApprovalScreen(workflow);
 	//}
+	static boolean getisClosed()
+	{
+	return isClosed;	
+	}
 }
 

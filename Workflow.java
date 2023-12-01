@@ -208,7 +208,17 @@ public class Workflow {
       if(workflow.getNextStep()==1)
       {
     	 new ApprovalScreen(workflow);
+    	 while(ApprovalScreen.getisClosed() == false){
+ 	    	try{
+ 			    Thread.sleep(100);
+ 	     	}
+ 	      catch(InterruptedException e) {
+ 	         e.printStackTrace();
+ 	      }	
+ 	  	}
+    	 System.out.println("OK");
       }
+      System.exit(0);
     //}while(workflow.getNextStep()!=1);
 	}
 }
