@@ -82,6 +82,15 @@ public class Workflow {
 	}
 
 	/**
+	 * Gets the immigrant form list.
+	 * 
+	 * @return the form list.
+	 */
+	public ArrayList<Immigrant> getFormList(){
+		return formList;
+	}
+
+	/**
 	 * Sets the form if needed.
 	 */
 	public void setForm(Immigrant form) {
@@ -136,6 +145,14 @@ public class Workflow {
 	 */
 	public void addForm(Immigrant form){
 		this.formList.add(form);
+	}
+
+	/**
+	 * Removes the current form from the form list.
+	 */
+	public void removeCurrentForm(){
+		formList.remove(form);
+		this.form = getNextForm();
 	}
 
 	/**
@@ -202,22 +219,25 @@ public class Workflow {
 		      }
 		  	}
 		  }
-
+		  //Update the workflow
 			workflow = reviewScreen.getWorkflow();
       if(workflow.getNextStep()==1)
       {
-    	 new ApprovalScreen(workflow);
-    	 while(ApprovalScreen.getisClosed() == false){
- 	    	try{
- 			    Thread.sleep(100);
- 	     	}
- 	      catch(InterruptedException e) {
- 	         e.printStackTrace();
- 	      }	
- 	  	}
-    	 System.out.println("OK");
-      }
-      System.exit(0);
-    //}while(workflow.getNextStep()!=1);
+    		new ApprovalScreen(workflow);
+    		while(ApprovalScreen.getisClosed() == false){
+ 	    		try{
+ 			  		Thread.sleep(100);
+ 	     		}
+ 	      	catch(InterruptedException e) {
+ 	     		 	e.printStackTrace();
+ 	     		}	
+ 	    	}
+			}
+			//Update the workflow
+
+			if(workflow.getNextStep() == 2)
+				break;
+		}
+		System.exit(0);
 	}
 }

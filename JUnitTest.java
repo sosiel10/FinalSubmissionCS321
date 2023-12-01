@@ -11,6 +11,37 @@ public class JUnitTest {
 	//Workflow class
 
 	/**
+	 * Testing to make sure constructor initializes the workflow properly.
+	 */
+	@Test
+	public void wfEmptyConstructor(){
+		Workflow workflow = new Workflow();
+
+		//Check that the workflow constructor initializes the next step to -1
+		assertEquals(-1, workflow.getNextStep());
+		//Check that the workflow constructor initializes the form to null
+		assertEquals(null, workflow.getForm());
+		//Check that the workflow constructor initializes the form list to an empty list
+		assertEquals(true, workflow.getFormList().isEmpty());	
+	}
+
+	/**
+	 * Testing to make sure constructor initializes the workflow properly.
+	 */
+	@Test
+	public void workflowConstructor(){
+		Immigrant immigrant = new Immigrant("Alice Smith", 789012, "Bob Smith");
+		Workflow workflow = new Workflow(immigrant);
+
+		//Checks that the workflow constructor initializes the next step appropriately
+		assertEquals(0, workflow.getNextStep());
+		//Checks that the workflow constructor initializes the form to the immigrant
+		assertEquals(immigrant, workflow.getForm());
+		//Checks that the workflow constructor adds the form to the form list
+		assertEquals(1, workflow.getFormList().size());
+	}
+
+	/**
 	 * Testing to make sure the proper email is sent out depending
 	 * on whether the application was approved or not.
 	 */
@@ -50,6 +81,7 @@ public class JUnitTest {
 		assertEquals(false, wf.setNextStep(3));
 		assertEquals(2, wf.getNextStep());
 	}
+
 
 	//Immigrant class
 
