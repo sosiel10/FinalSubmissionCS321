@@ -105,6 +105,16 @@ public class Workflow {
 		}
 		return null;
 	}
+
+	/**
+	 * Returns whether or not the form list is empty.
+	 * False if there are immigrant forms, true otherwise.
+	 * 
+	 * @return if the form list is empty.
+	 */
+	public boolean isEmpty(){
+		return formList.size() == 0;
+	}
 	
 	/**
 	 * Gets next immigrant form in the list for review.
@@ -143,17 +153,6 @@ public class Workflow {
 		}
 	}
 	
-	public void removeCurrentForm() {
-	    if (currentFormIndex < formList.size()) {
-	        formList.remove(currentFormIndex);
-
-	        // Adjust currentFormIndex if necessary
-	        if (currentFormIndex >= formList.size()) {
-	            currentFormIndex = formList.size() - 1;
-	        }
-	    }
-	}
-	
 	/**
 	 * Testing
 	 */
@@ -183,32 +182,32 @@ public class Workflow {
       reviewScreen = new ReviewScreen(workflow);
       System.out.println();
     }while(a.startReview != 0);
+    //initializes immigrant forms
     workflow.initializeFormsForTesting();
-    //Review step commences if next step is set to review
-    if(workflow.getNextStep() == 0)
-    {
-    	//Runs the review screen
-  	  reviewScreen.runScreen();
-  	  //Keeps review screen running until all forms have been reviewed
-  	  //You have to approve edits to approve each form and get every workflow item
-  	  //until there are no more forms to review			
-	    while(reviewScreen.getFrame().isVisible()){
-	    	try{
-			    Thread.sleep(100);
-	     	}
-	      catch(InterruptedException e) {
-	         e.printStackTrace();
-	      }
-	  	}
-	  }
+    while(!workflow.isEmpty()){
+    	//Review step commences if next step is set to review
+	    if(workflow.getNextStep() == 0)
+	    {
+	    	//Runs the review screen
+	  	  reviewScreen.runScreen();
+	  	  //Keeps review screen running until all forms have been reviewed
+	  	  //You have to approve edits to approve each form and get every workflow item
+	  	  //until there are no more forms to review			
+		    while(reviewScreen.getFrame().isVisible()){
+		    	try{
+				    Thread.sleep(100);
+		     	}
+		      catch(InterruptedException e) {
+		         e.printStackTrace();
+		      }
+		  	}
+		  }
 
-    //do {
-	  	//updates the workflow
 			workflow = reviewScreen.getWorkflow();
-      if(workflow.getNextStep()==1)
-      {
-    	 new ApprovalScreen(workflow);
-      }
-    //}while(workflow.getNextStep()!=1);
-	}
+
+	    if(workflow.getNextStep() == 1){
+	    	 new ApprovalScreen(workflow);
+	    	 
+	    }
+		}
 }
