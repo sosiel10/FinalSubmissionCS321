@@ -23,7 +23,11 @@ public class Workflow {
 	 */
 	ArrayList<Immigrant> formList;
 
-
+	/**
+	 * Current Form Index
+	 */
+	private int currentFormIndex = 0;
+	
 	/**
 	 * Constructor creates a worfklow with no immigrant form
 	 */
@@ -101,6 +105,19 @@ public class Workflow {
 		}
 		return null;
 	}
+	
+	/**
+	 * Gets next immigrant form in the list for review.
+	 * 
+	 * @return the next form.
+	 */
+	public Immigrant getNextFormApproval(){
+        if(currentFormIndex >= formList.size()-1)
+            return null;
+        currentFormIndex++; // Move to the next form
+        Immigrant nextForm = formList.get(currentFormIndex);
+        return nextForm;
+    }
 
 	/**
 	 * Adds a form to the list.
@@ -125,6 +142,16 @@ public class Workflow {
 			return true;
 		}
 	}
+	
+	/**
+	 * Testing
+	 */
+	public void initializeFormsForTesting() {
+	    Immigrant form1 = new Immigrant("John Doe", 123456, "Jane Doe");
+	    Immigrant form2 = new Immigrant("Alice Smith", 789012, "Bob Smith");
+	    formList.add(form1);
+	    formList.add(form2);
+	}
 
 	/**
 	 * Main method to execute the workflow process.
@@ -145,7 +172,7 @@ public class Workflow {
       reviewScreen = new ReviewScreen(workflow);
       System.out.println();
     }while(a.startReview != 0);
-       
+    workflow.initializeFormsForTesting();
     //Review step commences if next step is set to review
     if(workflow.getNextStep() == 0)
     {
