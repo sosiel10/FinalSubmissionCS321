@@ -94,4 +94,39 @@ public class JUnitTest {
 		//check to make sure it is valid
 		assertEquals(true, immigrant.getValidAN());
 	}
+
+	/**
+	 * Testing to make sure setAN handles numbers that are out of bounds.
+	 */
+	@Test
+	public void checkImmigrantConstructor(){
+		Immigrant im = new Immigrant();
+		assertEquals("Check If Complete is false: ", false, im.getComplete());
+		assertEquals("Check If getValidAN is false: ", false, im.getValidAN());
+		im.setComplete(true);
+		im.setValidAN(true);
+		assertEquals("Check If Complete is true: ", true, im.getComplete());
+		assertEquals("Check If getValidAN is true: ", true, im.getComplete());
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
