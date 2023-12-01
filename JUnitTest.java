@@ -93,11 +93,11 @@ public class JUnitTest {
 	@Test
 	public void checkRelative(){
 		Immigrant immigrant = new Immigrant("Aleem Sarwar", 5, "John Doe");
-		immigrant.setAccessGranted(true);
-		Immigrant immigrant2 = new Immigrant("Aleem Sarwar", 5, "John Doe");
+		//Immigrant immigrant2 = new Immigrant("Aleem Sarwar", 5, "John Doe");
 		//setting the relative name to someone that has not been granted access
-		immigrant2.setRelativeName("Lionel Pessi");
+		immigrant.setRelativeName("Lionel Pessi");
 		assertEquals(false, immigrant.relativeAccessGranted());
+		immigrant.setAccessGranted(true);
 		//setting the relative name to someone that has been granted access
 		immigrant.setRelativeName("Aleem Sarwar");
 		assertEquals(true, immigrant.relativeAccessGranted());
@@ -128,7 +128,7 @@ public class JUnitTest {
 	}
 
 	/**
-	 * Testing to make sure setAN handles numbers that are out of bounds.
+	 * Testing to make sure Immigrant constructor values are valid and can be accsessed.
 	 */
 	@Test
 	public void checkImmigrantConstructor(){
