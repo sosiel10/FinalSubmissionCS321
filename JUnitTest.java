@@ -158,25 +158,4 @@ public class JUnitTest {
 		assertEquals("Check If Complete is true: ", true, im.getComplete());
 		assertEquals("Check If getValidAN is true: ", true, im.getComplete());
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
