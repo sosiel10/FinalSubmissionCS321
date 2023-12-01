@@ -42,6 +42,24 @@ public class JUnitTest {
 	}
 
 	/**
+	 * Testing the addForm method and remove method in the workflow.
+	 */
+	@Test
+	public void testAddRemove(){
+		Immigrant immigrant1 = new Immigrant("John Doe", 123456, "Jane Doe");
+		Immigrant immigrant2 = new Immigrant("Alice Smith", 789012, "Bob Smith");
+		Workflow workflow = new Workflow(immigrant1);
+
+		workflow.addForm(immigrant2);
+		//Testing if size increases to 2 after addForm()
+		assertEquals(2, workflow.getFormList().size());
+
+		workflow.removeCurrentForm();
+		//Testing if size decreased after removeCurrentForm()
+		assertEquals(1, workflow.getFormList().size());
+	}
+
+	/**
 	 * Testing to make sure the proper email is sent out depending
 	 * on whether the application was approved or not.
 	 */
